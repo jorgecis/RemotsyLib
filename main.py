@@ -19,7 +19,6 @@ if __name__ == "__main__":
     #Get the list of the controls
     lst_ctl = client.list_controls()
     for ctl in lst_ctl:
-        print ctl
         print "id %s Name %s" % (ctl["_id"], ctl['name'])
 
     #get the list of the available buttons for the first control
