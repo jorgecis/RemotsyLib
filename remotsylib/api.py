@@ -42,3 +42,19 @@ class Api():
             return ret["data"]["controls"]
         else:
             return None
+
+    def list_buttons(self, idctl):
+        ret = self.post("controls/get_buttons_control",{"id_control": idctl})
+        if ret["status"] == "success":
+            return ret["data"]["buttons"]
+        else:
+            return None
+
+    def blast(self, iddev, idbto, ntime = 1):
+        ret = self.post("codes/blast",{"id_dev": iddev, "code": idbto, "ntime": ntime})
+        if ret["status"] == "success":
+            return True
+        else:
+            return False
+
+
