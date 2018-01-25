@@ -53,4 +53,16 @@ class API():
             return controls_list['data']['controls']
         return dict(error='List Controls', message='No controls found', status=409)
 
+    async def list_buttons(self, controller_id):
+        buttons = await self.post('controls/get_buttons_control', dict(id_control=controller_id))
+        if buttons['status'] == 'success':
+            return buttons['data']['buttons']
+        return dict(error='List Buttons', message='No Controller ID', status=409)
+
+    async def blast(self, device_id, button_id, ntime=1):
+        blast_resp = self.post('codes/blast', dict(id_dev=device_id, code=button_id, ntime=ntime))
+        if blast_resp['status'] == 'success':
+            return blast_resp
+        return dict(error='IR Blast', message=False, status=409)
+
 
