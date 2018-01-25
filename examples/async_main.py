@@ -1,12 +1,6 @@
 from aiohttp.web import (Application, run_app, View, json_response)
 from asyncio import (get_event_loop, set_event_loop_policy)
 from remotsylib.api_async import API
-from uvloop import EventLoopPolicy
-
-"""
-    Windows users comment out line 10 
-    UVLOOP is not supported in Windows
-"""
 
 remotsy = API()
 
@@ -32,7 +26,6 @@ def make_server(close=False):
     app = Application()
     app['remotsy_auth'] = None
     bind_routes_to_server(app)
-    set_event_loop_policy(EventLoopPolicy()) # Uses UVloop vs Asyncio Loop
     loop = get_event_loop()
     loop.close() if close else None
     loop.create_server(run_app(app, port=8080))
