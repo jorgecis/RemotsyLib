@@ -1,16 +1,16 @@
 #!/bin/env python2
-from remotsylib import api
-import argparse
-import sys
+from remotsylib.api import API
+from argparse import ArgumentParser
+from sys import argv
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = ArgumentParser()
     parser.add_argument("-u", "--username", action="store", type=str, required=True)
     parser.add_argument("-p", "--password", action="store", type=str, required=True)
-    args =  parser.parse_args(sys.argv[1:])
+    args =  parser.parse_args(argv[1:])
 
-    client = api.Api()
+    client = API()
 
     #Do the login and get the token
     token = client.login(args.username, args.password)
