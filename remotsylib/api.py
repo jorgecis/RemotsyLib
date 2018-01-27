@@ -1,29 +1,29 @@
-import json
-import urllib2
-import sys
+from json import dumps, loads
+from sys import exit
+from urllib2 import Request, urlopen, HTTPError, URLError
 
 
-class Api():
+class API():
+    
     def __init__(self, apiurl = "https://remotsy.com/rest/"):
         self.apiurl = apiurl
         self.auth_key = None
 
-
     def post(self, url, data):
-        req = urllib2.Request(self.apiurl + url)
+        req = Request(self.apiurl + url)
         req.add_header('Content-Type', 'application/json')
         if self.auth_key is not None:
            data["auth_key"] = self.auth_key
         try:
-            resp = urllib2.urlopen(req, json.dumps(data))
-        except urllib2.HTTPError as e:
+            resp = urlopen(req, dumps(data))
+        except HTTPError as e:
             print e
-            sys.exit(-1)
-        except urllib2.URLError as e:
+            exit(-1)
+        except URLError as e:
             print e
-            sys.exit(-2)
+            exit(-2)
         else:
-            body = json.loads(resp.read())
+            body = loads(resp.read())
             return  body
 
     def login(self, username, password):
