@@ -16,7 +16,8 @@ before_script:
   - pylint --version
 
 script: 
-  - pylint --rcfile=pylint.rc *.py
+  - pylint *.py
+  - python setup.py bdist
 
 
 notifications:
