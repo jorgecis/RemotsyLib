@@ -48,5 +48,4 @@ setup(
     #    'dev': ['check-manifest'],
     #    'test': ['coverage'],
     #},
-    },
 )
