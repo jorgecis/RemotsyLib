@@ -10,13 +10,14 @@ matrix:
       env: TOXENV=py36
 
 install:
-  - pip install pylint
-  - pip install tox
+  - pip install pylint pep8
 
 before_script:
   - pylint --version
 
-script: tox
+script: 
+  - pylint --rcfile=pylint.rc *.py
+
 
 notifications:
   email:
