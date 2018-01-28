@@ -1,4 +1,3 @@
-#!/bin/env python2
 """ Remotsy library for python
     Copyright 2018 Jorge Cisneros jorge@remotsy.com
 """

@@ -16,7 +16,7 @@ before_script:
   - pylint --version
 
 script: 
-  - pylint *.py
+  - pylint remotsylib/*.py
   - python setup.py bdist
 
 

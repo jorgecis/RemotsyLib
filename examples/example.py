@@ -1,14 +1,15 @@
 #!/bin/env python2
-from remotsylib.api import API
+""" Example code of how to use the Remotsy Lib """
 from argparse import ArgumentParser
 from sys import argv
+from remotsylib.api import API
 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("-u", "--username", action="store", type=str, required=True)
     parser.add_argument("-p", "--password", action="store", type=str, required=True)
-    args =  parser.parse_args(argv[1:])
+    args = parser.parse_args(argv[1:])
 
     client = API()
 
