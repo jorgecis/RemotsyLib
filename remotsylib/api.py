@@ -46,16 +46,14 @@ class API(object):
         ret = self.post("controls/list", {})
         if ret["status"] == "success":
             return ret["data"]["controls"]
-        else:
-            return None
+        return None
 
     def list_buttons(self, idctl):
         """ Function to get the list of the button of a control """
         ret = self.post("controls/get_buttons_control", {"id_control": idctl})
         if ret["status"] == "success":
             return ret["data"]["buttons"]
-        else:
-            return None
+        return None
 
     def blast(self, iddev, idbto, ntime=1):
         """ Function to blast infrared code via remotsy """
