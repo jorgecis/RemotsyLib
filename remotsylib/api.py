@@ -55,6 +55,18 @@ class API(object):
             return ret["data"]["buttons"]
         return None
 
+    def list_routines(self):
+        """ Function to get the list of the routines """
+        ret = self.post("routines/list", {})
+        if ret["status"] == "success":
+            return ret["data"]["routines"]
+        return None
+
+    def play_routine(self, idrt):
+        """ Function to play a routine via the Id """
+        ret = self.post("routines/play_routine", {"idroutine": idrt})
+        return ret["status"] == "success"
+
     def blast(self, iddev, idbto, ntime=1):
         """ Function to blast infrared code via remotsy """
         ret = self.post("codes/blast", {"id_dev": iddev, "code": idbto, "ntime": ntime})
