@@ -1,0 +1,26 @@
+language: python
+
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=py27
+    - python: 3.5
+      env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
+
+install:
+  - pip install pylint pep8
+
+before_script:
+  - pylint --version
+
+script: 
+  - pylint *.py
+  - python setup.py bdist
+
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
