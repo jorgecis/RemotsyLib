@@ -65,4 +65,27 @@ class API():
             return blast_resp
         return dict(error='IR Blast', message=False, status=409)
 
+    async def list_routines(self):
+        routines = self.post('routines/list', data={})
+        if routines['status'] == 'success':
+            return routines
+        return dict(error='List Routines', message=False, status=409)
+
+    async def play_routine(self, routine_id):
+        played = self.post('routines/play_routine', dict(idroutine=routine_id))
+        if played['status'] == 'success':
+            return played
+        return dict(error='Play Routine', message=False, status=409)
+
+    async def blink_led(self, device_id):
+        blink = self.post('devices/blink', dict(id_dev=device_id))
+        if blink['status'] == 'success':
+            return blink
+        return dict(error='Blink LED', message=False, status=409)
+
+    async def update_firmware(self, device_id):
+        fw_update = self.post('devices/updatefirmware', dict(id_dev=device_id))
+        if fw_update['status'] == 'success':
+            return fw_update
+        return dict(error='Firmware Update', message=False, status=409)
 
