@@ -4,9 +4,6 @@ from asyncio import get_event_loop
 from yarl import urljoin
 
 class Requests():
-    """
-        @param `proxy`: use proxy in session if passed
-    """
 
     async def do_get(self, url, data=None):
         async with ClientSession() as session:
@@ -88,4 +85,3 @@ class API():
         if fw_update['status'] == 'success':
             return fw_update
         return dict(error='Firmware Update', message=False, status=409)
-        
