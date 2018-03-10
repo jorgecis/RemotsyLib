@@ -81,3 +81,4 @@ class API(object):
         """ Function to update Remotsy's firmware"""
         ret = self.post("devices/updatefirmware", {"id_dev": iddev})
         return ret["status"] == "success"
+        
