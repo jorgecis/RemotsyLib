@@ -71,3 +71,14 @@ class API(object):
         """ Function to blast infrared code via remotsy """
         ret = self.post("codes/blast", {"id_dev": iddev, "code": idbto, "ntime": ntime})
         return ret["status"] == "success"
+
+    def blink_led(self, iddev):
+        """ Function to blink the led via the id_dev """
+        ret = self.post("devices/blink", {"id_dev": iddev})
+        return ret["status"] == "success"
+
+    def update_firmware(self, iddev):
+        """ Function to update Remotsy's firmware"""
+        ret = self.post("devices/updatefirmware", {"id_dev": iddev})
+        return ret["status"] == "success"
+        
