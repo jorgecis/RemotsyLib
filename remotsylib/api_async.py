@@ -88,4 +88,4 @@ class API():
         if fw_update['status'] == 'success':
             return fw_update
         return dict(error='Firmware Update', message=False, status=409)
-
+        
