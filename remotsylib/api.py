@@ -76,7 +76,7 @@ class API(object):
         """ Function to blink the led via the id_dev """
         ret = self.post("devices/blink", {"id_dev": iddev})
         return ret["status"] == "success"
-        
+
     def update_firmware(self, iddev):
         """ Function to update Remotsy's firmware"""
         ret = self.post("devices/updatefirmware", {"id_dev": iddev})
