@@ -39,7 +39,7 @@ class API():
                 endpoint = urljoin(self.api_url, partial_url)
                 response = await self.requests.do_post(url=endpoint, data=data)
                 return response
-        except Exception as error:
+        except KeyError as error:
             return dict(error='API Error', message=error, status=409)
 
     async def login(self, auth=None):

@@ -14,7 +14,8 @@ before_script:
   - pylint --version
 
 script: 
-  - pylint remotsylib/api_async.py
+  - pylint remotsylib/*.py
+  - pylink examples/*.py
   - python setup.py bdist
 
 

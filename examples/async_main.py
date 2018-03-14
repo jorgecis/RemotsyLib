@@ -36,7 +36,6 @@ def bind_routes_to_server(app):
 
 def make_server(close=False):
     """ Creates the server """
-
     app = Application()
     app['remotsy_auth'] = None
     bind_routes_to_server(app)
