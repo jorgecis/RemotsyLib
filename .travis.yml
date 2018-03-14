@@ -8,7 +8,7 @@ matrix:
       env: TOXENV=py36
 
 install:
-  - pip install pylint pep8 aiohttp
+  - pip3 install pylint pep8 aiohttp
 
 before_script:
   - pylint --version
@@ -16,7 +16,7 @@ before_script:
 script: 
   - pylint remotsylib/*.py
   - pylint examples/*.py
-  - python setup.py bdist
+  - python3 setup.py bdist
 
 
 notifications:
