@@ -1,7 +1,8 @@
-#!/usr/local/bin/python3.5
+# /usr/bin/python3.6
 from aiohttp import (ClientSession, TCPConnector, BasicAuth)
 from asyncio import get_event_loop
 from yarl import urljoin
+
 
 class Requests():
 
@@ -16,6 +17,7 @@ class Requests():
             async with session.post(url, json=data) as response:
                 j_resp = await response.json()
                 return j_resp
+
 
 class API():
 
@@ -37,7 +39,8 @@ class API():
 
     async def login(self, auth=dict(username=None, password=None)):
         if auth['username'] is not None and auth['password'] is not None:
-            login_status = await self.post(partial_url='session/login', data=auth)
+            login_status = await self.post(
+                partial_url='session/login', data=auth)
             print(login_status)
             if login_status['status'] == 'success':
                 self.auth_key = login_status['data']['auth_key']
@@ -48,16 +51,20 @@ class API():
         controls_list = await self.post('controls/list', data={})
         if controls_list['status'] == 'success':
             return controls_list['data']['controls']
-        return dict(error='List Controls', message='No controls found', status=409)
+        return dict(
+            error='List Controls', message='No controls found', status=409)
 
     async def list_buttons(self, controller_id):
-        buttons = await self.post('controls/get_buttons_control', dict(id_control=controller_id))
+        buttons = await self.post(
+            'controls/get_buttons_control', dict(id_control=controller_id))
         if buttons['status'] == 'success':
             return buttons['data']['buttons']
-        return dict(error='List Buttons', message='No Controller ID', status=409)
+        return dict(
+            error='List Buttons', message='No Controller ID', status=409)
 
     async def blast(self, device_id, button_id, ntime=1):
-        blast_resp = self.post('codes/blast', dict(id_dev=device_id, code=button_id, ntime=ntime))
+        blast_resp = self.post(
+            'codes/blast', dict(id_dev=device_id, code=button_id, ntime=ntime))
         if blast_resp['status'] == 'success':
             return blast_resp
         return dict(error='IR Blast', message=False, status=409)
