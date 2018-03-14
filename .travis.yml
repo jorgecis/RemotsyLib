@@ -2,19 +2,18 @@ language: python
 
 matrix:
   include:
-    - python: 3.5
-      env: TOXENV=py35
     - python: 3.6
       env: TOXENV=py36
 
 install:
-  - pip install pylint pep8
+  - pip3 install pylint pep8 aiohttp
 
 before_script:
   - pylint --version
 
 script: 
-  - pylint *.py
+  - pylint remotsylib/*.py
+  - pylint examples/*.py
   - python setup.py bdist
 
 
