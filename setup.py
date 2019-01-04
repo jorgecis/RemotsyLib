@@ -1,13 +1,13 @@
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 # To use a consistent encoding
-from codecs import open
 from os import path
+from codecs import open as openf
 
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with openf(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
@@ -17,7 +17,7 @@ setup(
     long_description=long_description,
     url='https://github.com/jorgecis/remotsylib',
     author='Jorge Cisneros',
-    author_email='jorge@remotsy.com', 
+    author_email='jorge@remotsy.com',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -27,7 +27,7 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
     keywords='Remotsy infrared remote control smarthome',
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']), 
+    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     #install_requires=['peppercorn'],  # Optional
     #extras_require={  # Optional
