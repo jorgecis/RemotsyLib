@@ -9,15 +9,30 @@ Installation
 
   $ pip install remotsylib
 
-Examples
+Example
 ========
 
-See the directory `examples  <https://github.com/jorgecis/RemotsyLib/tree/master/examples>`_.
+.. code-block:: python
+
+    from remotsylib.api import API
+
+    if __name__ == "__main__":
+
+        client = API()
+
+        #Do the login and get the token
+        token = client.login(args.username, args.password)
+
+        #Get the list of the controls
+        lst_ctl = client.list_controls()
+        for ctl in lst_ctl:
+            print "id %s Name %s" % (ctl["_id"], ctl['name'])
+
 
 Authentication
 ==============
 
- You can use your remotsy username and password, but for security is recomended to generate
+You can use your remotsy username and password, but for security is recomended to generate
 a application password, logon in https://home.remotsy.com and use the option App Passwords.
 
 
