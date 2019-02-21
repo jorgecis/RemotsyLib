@@ -8,7 +8,7 @@ import sys
 
 class API(object):
     """ API class for the remotsy lib core """
-    def __init__(self, apiurl="https://remotsy.com/rest/"):
+    def __init__(self, apiurl="https://api.remotsy.com/rest/"):
         self.apiurl = apiurl
         self.auth_key = None
 

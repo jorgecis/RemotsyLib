@@ -9,7 +9,7 @@ with openf(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='remotsylib',
-    version='0.0.1',
+    version='0.0.2',
     description='A Remotsy python lib for use the Restfull API',
     long_description=long_description,
     url='https://github.com/jorgecis/remotsylib',
@@ -28,5 +28,4 @@ setup(
     ],
     keywords='Remotsy infrared remote control smarthome',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-
 )
