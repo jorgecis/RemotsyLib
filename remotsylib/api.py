@@ -1,9 +1,14 @@
 """ Remotsy library for python
     Copyright 2018 Jorge Cisneros jorge@remotsy.com
 """
-from json import dumps, loads
-from urllib2 import Request, urlopen, HTTPError, URLError
 import sys
+from json import dumps, loads
+try:
+    # For Python 3.0 and later
+    from urllib.request import urlopen, Request, HTTPError, URLError
+except ImportError:
+    # Fall back to Python 2's urllib2
+    from urllib2 import Request, urlopen, HTTPError, URLError
 
 
 class API(object):
@@ -19,12 +24,12 @@ class API(object):
         if self.auth_key is not None:
             data["auth_key"] = self.auth_key
         try:
-            resp = urlopen(req, dumps(data))
+            resp = urlopen(req, dumps(data).encode("utf-8"))
         except HTTPError as errobj:
-            print errobj
+            print (errobj)
             sys.exit(-1)
         except URLError as errobj:
-            print errobj
+            print (errobj)
             sys.exit(-2)
         else:
             body = loads(resp.read())
@@ -81,4 +86,3 @@ class API(object):
         """ Function to update Remotsy's firmware"""
         ret = self.post("devices/updatefirmware", {"id_dev": iddev})
         return ret["status"] == "success"
-        
