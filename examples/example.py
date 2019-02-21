@@ -1,5 +1,6 @@
 #!/bin/env python2
 """ Example code of how to use the Remotsy Lib """
+from __future__ import print_function
 from argparse import ArgumentParser
 from sys import argv
 from remotsylib.api import API

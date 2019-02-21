@@ -1,6 +1,7 @@
 """ Remotsy library for python
     Copyright 2018 Jorge Cisneros jorge@remotsy.com
 """
+from __future__ import print_function
 import sys
 from json import dumps, loads
 try:
