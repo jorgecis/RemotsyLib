@@ -109,7 +109,7 @@ class API():
 
 
 def run_remotsy_api_call(api_call=None):
+    """ Runner to run async api calls """
     if api_call is not None:
         return get_event_loop().run_until_complete(api_call)
     raise ValueError('api_call is not defined!')
-
