@@ -1,8 +1,8 @@
 # /usr/bin/python3.6
 """ Python3+ async Remotsy API """
+from asyncio import get_event_loop
 from aiohttp import ClientSession
 from yarl import urljoin
-from asyncio import get_event_loop, ensure_future
 
 
 class Requests():
