@@ -1,5 +1,6 @@
 # /usr/bin/python3.6
 """ Python3+ async Remotsy API """
+from asyncio import get_event_loop
 from aiohttp import ClientSession
 from yarl import urljoin
 
@@ -25,10 +26,10 @@ class Requests():
 class API():
     """ This is the main API  """
 
-    def __init__(self, api_url='https://remotsy.com/rest/'):
+    def __init__(self, api_url='https://remotsy.com/rest/', auth_key=None):
         self.api_url = api_url
         self.requests = Requests()
-        self.auth_key = None
+        self.auth_key = auth_key
 
     async def post(self, partial_url=None, data=None):
         """ Carries out the request to Remotsy's server """
@@ -72,7 +73,7 @@ class API():
 
     async def blast(self, device_id, button_id, ntime=1):
         """ Blast a button to a device nTimes """
-        blast_resp = self.post(
+        blast_resp = await self.post(
             'codes/blast', dict(id_dev=device_id, code=button_id, ntime=ntime))
         if blast_resp['status'] == 'success':
             return blast_resp
@@ -80,28 +81,35 @@ class API():
 
     async def list_routines(self):
         """ List all the routines available """
-        routines = self.post('routines/list', data={})
+        routines = await self.post('routines/list', data={})
         if routines['status'] == 'success':
             return routines
         return dict(error='List Routines', message=False, status=409)
 
     async def play_routine(self, routine_id):
         """ Play a specific routine """
-        played = self.post('routines/play_routine', dict(idroutine=routine_id))
+        played = await self.post('routines/play_routine', dict(idroutine=routine_id))
         if played['status'] == 'success':
             return played
         return dict(error='Play Routine', message=False, status=409)
 
     async def blink_led(self, device_id):
         """ blink Remotsy's led """
-        blink = self.post('devices/blink', dict(id_dev=device_id))
+        blink = await self.post('devices/blink', dict(id_dev=device_id))
         if blink['status'] == 'success':
             return blink
         return dict(error='Blink LED', message=False, status=409)
 
     async def update_firmware(self, device_id):
         """ Update Remotsy's firmware """
-        fw_update = self.post('devices/updatefirmware', dict(id_dev=device_id))
+        fw_update = await self.post('devices/updatefirmware', dict(id_dev=device_id))
         if fw_update['status'] == 'success':
             return fw_update
         return dict(error='Firmware Update', message=False, status=409)
+
+
+def run_remotsy_api_call(api_call=None):
+    """ Runner to run async api calls """
+    if api_call is not None:
+        return get_event_loop().run_until_complete(api_call)
+    raise ValueError('api_call is not defined!')
