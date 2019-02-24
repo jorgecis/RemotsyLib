@@ -33,7 +33,7 @@ class API(object):
             print (errobj)
             sys.exit(-2)
         else:
-            body = loads(resp.read())
+            body = loads(resp.read().decode("utf-8"))
             return  body
 
     def login(self, username, password):
