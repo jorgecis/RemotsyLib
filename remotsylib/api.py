@@ -12,7 +12,7 @@ except ImportError:
     from urllib2 import Request, urlopen, HTTPError, URLError
 
 
-class API(object):
+class API:
     """ API class for the remotsy lib core """
     def __init__(self, apiurl="https://api.remotsy.com/rest/"):
         self.apiurl = apiurl
