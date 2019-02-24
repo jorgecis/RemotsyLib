@@ -15,3 +15,4 @@ except TypeError:
 score = run.linter.stats['global_note']
 if score < THRESHOLD:
     sys.exit(1)
+sys.exit(0)
