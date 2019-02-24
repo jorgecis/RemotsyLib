@@ -27,10 +27,10 @@ class API(object):
         try:
             resp = urlopen(req, dumps(data).encode("utf-8"))
         except HTTPError as errobj:
-            print (errobj)
+            print(errobj)
             sys.exit(-1)
         except URLError as errobj:
-            print (errobj)
+            print(errobj)
             sys.exit(-2)
         else:
             body = loads(resp.read().decode("utf-8"))
