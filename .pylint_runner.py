@@ -8,7 +8,7 @@ if len(sys.argv) < 2:
     raise ArgumentError("Module to evaluate needs to be the first argument")
 try:
     # python 3.X
-    run = lint.Run([sys.argv[1]], do_exit=False)
+    run = lint.Run([sys.argv[1]])
 except TypeError:
     #python 2.7
     run = lint.Run([sys.argv[1]])
